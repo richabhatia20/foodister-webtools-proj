@@ -8,12 +8,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-//import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="CUSTOMER")
-//@PrimaryKeyJoinColumn(name="USER_ID")
+@PrimaryKeyJoinColumn(name="USER_ID")
 public class Customer extends User{
 
 	@Column(name = "ISACTIVE")
@@ -34,13 +34,15 @@ public class Customer extends User{
 	
 
 
-//	public Customer(String firstName, String lastName, String emailId, String userName, String password,
-//			boolean isActive, Date lastLogin, ArrayList<Review> reviewsWritten) {
-//		super(firstName, lastName, emailId, userName, password);
-//		this.isActive = isActive;
-//		this.lastLogin = lastLogin;
-//		this.reviewsWritten = reviewsWritten;
-//	}
+	public Customer(String firstName, String lastName, String emailId, String userName, String password
+			//,Date lastLogin, 
+			//ArrayList<Review> reviewsWritten
+			) {
+		super(firstName, lastName, emailId, userName, password);
+		this.isActive = true;
+		//this.lastLogin = lastLogin;
+		//this.reviewsWritten = reviewsWritten;
+	}
 
 
 

@@ -8,14 +8,14 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-//import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 //import javax.persistence.Transient;
 
 
 @Entity
 @Table(name="OWNER")
-//@PrimaryKeyJoinColumn(name="USER_ID")
+@PrimaryKeyJoinColumn(name="USER_ID")
 public class Owner extends User{
 
 	@Column(name = "ISACTIVE")
@@ -37,7 +37,14 @@ public class Owner extends User{
 		
 	}
 
-//
+	public Owner(String firstName, String lastName, String emailId, String userName, String password) {
+		super(firstName, lastName, emailId, userName, password);
+		this.isActive = true;
+	
+	}
+
+	
+	//
 //	public Owner(String firstName, String lastName, String emailId, String userName, String password, boolean isActive,
 //			Date lastLogin, ArrayList<Restaurant> restaurantList, ArrayList<ReviewReply> repliesToReviews) {
 //		super(firstName, lastName, emailId, userName, password);

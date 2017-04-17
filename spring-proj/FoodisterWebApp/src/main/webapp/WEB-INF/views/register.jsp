@@ -1,6 +1,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -37,8 +37,8 @@
 	rel='stylesheet' type='text/css'>
 </head>
 <body>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<!-- preloader section -->
+	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+	<!-- preloader section -->
 	<section class="preloader">
 		<div class="sk-spinner sk-spinner-pulse"></div>
 	</section>
@@ -74,42 +74,52 @@
 				</div>
 				<div class="col-md-offset-1 col-md-10 col-sm-12 wow fadeIn"
 					data-wow-delay="0.9s">
-					<form:form action="${contextPath}/register.htm" method="post" modelAttribute="user">
-						
-						<div class="col-md-6 col-sm-6">
-							<form:input path="firstname" name="firstname" type="text" class="form-control"
-								id="firstname" placeholder="First Name" required />
+					<form action="${contextPath}/register.htm" method="post">
+						<div>
+							<c:if test="${ not empty requestScope.registerError}">
+								<p class="form-control" style="color: red;">
+									<c:out value="${requestScope.registerError}" />
+								</p>
+							</c:if>
 						</div>
-							
 						<div class="col-md-6 col-sm-6">
-							<form:input path="lastname" name="lastname" type="text" class="form-control"
-								id="lastname" placeholder="Last Name" required />
+							<input name="firstName" type="text" class="form-control"
+								id="firstName" placeholder="First Name" required />
 						</div>
-						
-						<!-- <div class="col-md-6 col-sm-6">
-							<input name="phone" type="number" class="form-control"
-								id="phone" placeholder="Phone">
-						</div> -->
-						
+
 						<div class="col-md-6 col-sm-6">
-							<form:input path="username" name="username" type="text" class="form-control"
-								id="username" placeholder="User Name" required />
+							<input name="lastName" type="text" class="form-control"
+								id="lastName" placeholder="Last Name" required />
 						</div>
-						
+
+						<div class="col-md-12 col-sm-12">
+
+							<select name="accountType" class="form-control" required>
+								<option value="customer">Customer</option>
+								<option value="owner">Owner</option>
+
+							</select>
+						</div>
+
 						<div class="col-md-6 col-sm-6">
-							<form:input path="password" name="password" type="password" class="form-control"
+							<input name="userName" type="text" class="form-control"
+								id="userName" placeholder="User Name" required />
+						</div>
+
+						<div class="col-md-6 col-sm-6">
+							<input name="password" type="password" class="form-control"
 								id="password" placeholder="Password" required />
 						</div>
 						<div class="col-md-12 col-sm-12">
-							<form:input path="emailid" name="emailid" type="email" class="form-control"
-								id="emailid" placeholder="Email" required />
+							<input name="emailId" type="email" class="form-control"
+								id="emailId" placeholder="Email" required />
 						</div>
-						
+
 						<div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
 							<input name="submit" type="submit" class="form-control"
 								id="submit" value="Register">
 						</div>
-					</form:form>
+					</form>
 				</div>
 				<div class="col-md-2 col-sm-1"></div>
 			</div>

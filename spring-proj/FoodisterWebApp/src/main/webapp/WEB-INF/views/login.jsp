@@ -12,77 +12,63 @@
 
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="keywords" content="">
-<meta name="description" content="">
 
 <style>
-#forgotpasswordbutton{
-display: block;
-        background: transparent;
-    border: 2px solid #999;
-    border-radius: 10px;
-    letter-spacing: 2px;
-    margin-top: 12px;
-    height: 50px;
-    width: 100%;
-    text-align: center;
-    
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 32px;
-    color: #555;
-    
-    box-shadow: none;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: all 0.4s ease-in-out;
-    -o-transition: all 0.4s ease-in-out;;
-    transition: all 0.4s ease-in-out;
-
-
-
-}
-#forgotpasswordbutton:hover{
-background-color: #999;
-    color: white;
-    text-decoration: none;
-
+#forgotpasswordbutton {
+	display: block;
+	background: transparent;
+	border: 2px solid #999;
+	border-radius: 10px;
+	letter-spacing: 2px;
+	margin-top: 12px;
+	height: 50px;
+	width: 100%;
+	text-align: center;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 32px;
+	color: #555;
+	box-shadow: none;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;;
+	transition: all 0.4s ease-in-out;
 }
 
+#forgotpasswordbutton:hover {
+	background-color: #999;
+	color: white;
+	text-decoration: none;
+}
 
 #registerbutton {
-display: block;
-        background: transparent;
-    border: 2px solid #999;
-    border-radius: 10px;
-    letter-spacing: 2px;
-    margin-top: 12px;
-    height: 50px;
-    width: 100%;
-    text-align: center;
-    
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 32px;
-    color: #555;
-    
-    box-shadow: none;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: all 0.4s ease-in-out;
-    -o-transition: all 0.4s ease-in-out;;
-    transition: all 0.4s ease-in-out;
-
-
+	display: block;
+	background: transparent;
+	border: 2px solid #999;
+	border-radius: 10px;
+	letter-spacing: 2px;
+	margin-top: 12px;
+	height: 50px;
+	width: 100%;
+	text-align: center;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 32px;
+	color: #555;
+	box-shadow: none;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;;
+	transition: all 0.4s ease-in-out;
 }
 
-#registerbutton:hover{
-background-color: #999;
-    color: white;
-    text-decoration: none;
-
+#registerbutton:hover {
+	background-color: #999;
+	color: white;
+	text-decoration: none;
 }
-
 </style>
 
 
@@ -110,7 +96,7 @@ background-color: #999;
 	rel='stylesheet' type='text/css'>
 </head>
 <body>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 	<!-- preloader section -->
 	<section class="preloader">
 		<div class="sk-spinner sk-spinner-pulse"></div>
@@ -131,7 +117,8 @@ background-color: #999;
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${contextPath}/" class="smoothScroll">HOME</a></li>
-					<li><a href="${contextPath}/register" class="smoothScroll">SIGN UP</a></li>
+					<li><a href="${contextPath}/register" class="smoothScroll">SIGN
+							UP</a></li>
 				</ul>
 			</div>
 		</div>
@@ -152,28 +139,40 @@ background-color: #999;
 				</div>
 				<div class="col-md-offset-1 col-md-10 col-sm-12 wow fadeIn"
 					data-wow-delay="0.9s">
-					<form action="#" method="post">
+					<form action="${contextPath}/login.htm" method="post">
+						<div>
+							<c:if test="${ not empty requestScope.loginError}">
+								<p class="form-control" style="color: red;">
+									<c:out value="${requestScope.loginError}" />
+								</p>
+							</c:if>
+						</div>
+
+
 						<div class="col-md-12 col-sm-12">
-							<input name="username" type="text" class="form-control"
-								id="username" placeholder="User Name">
+							<input name="userName" type="text" class="form-control"
+								id="userName" placeholder="User Name">
 						</div>
 						<div class="col-md-12 col-sm-12">
 							<input name="password" type="password" class="form-control"
 								id="password" placeholder="Password">
 						</div>
 						<div class="col-md-6 col-sm-6">
-							
-								<a href="${contextPath}/forgotpassword" id="forgotpasswordbutton" >Forgot Password?</a>
+
+							<a href="${contextPath}/forgotpassword" id="forgotpasswordbutton">Forgot
+								Password?</a>
 
 						</div>
 						<div class="col-md-6 col-sm-6">
-							<a href="${contextPath}/register" id="registerbutton" >New User? Register Now</a>
-								
+							<a href="${contextPath}/register" id="registerbutton">New
+								User? Register Now</a>
+
 						</div>
 						<div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
 							<input name="submit" type="submit" class="form-control"
 								id="submit" value="Login">
 						</div>
+
 					</form>
 				</div>
 				<div class="col-md-2 col-sm-1"></div>

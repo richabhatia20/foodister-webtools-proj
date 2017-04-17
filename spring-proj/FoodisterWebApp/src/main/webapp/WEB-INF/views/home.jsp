@@ -11,9 +11,7 @@
 
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="">
-	<meta name="description" content="">
-
+	
 
 <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
 
@@ -55,14 +53,27 @@
 				<li><a href="#home" class="smoothScroll">HOME</a></li>
 				<li><a href="#gallery" class="smoothScroll">RESTAURANT GALLERY</a></li>
 				<li><a href="#contact" class="smoothScroll">CONTACT US</a></li>
+				<% if (session.getAttribute("User")!= null) { %>
+				
+				<li><a href="${contextPath}/logout" class="smoothScroll">LOGOUT</a></li>
+				<%} else { %>
+				
+				
 				<li><a href="${contextPath}/register" class="smoothScroll">SIGN UP</a></li>
 				<li><a href="${contextPath}/login" class="smoothScroll">LOGIN</a></li>
+				<%} %>
+				
 			</ul>
 		</div>
 	</div>
 </section>
-
-
+<% if (session.getAttribute("Role") == "Customer") { %>
+    <p> some content for customer</p>
+<% } else if (session.getAttribute("Role") == "Owner") {%>
+    <p> other content for owner</p>
+<% } else { %>
+	<p> content for admin </p>
+<%} %>
 <!-- home section -->
 <section id="home" class="parallax-section">
 	<div class="container">
@@ -70,7 +81,17 @@
 			<div class="col-md-12 col-sm-12">
 				<h1>FOODISTER </h1>
 				<h2>FIND YOUR FOOD!</h2>
+				<% if (session.getAttribute("Role") == "Customer") { %>
+				
+				<form action="${contextPath}/search" method="post">
+				<input type="text" name="searchRestaurant" style="color:#000; margin-right: 25px;padding: 15px; width: 350px;" placeholder="Search for restaurants">
+				<!-- <a href="#" class="smoothScroll btn btn-default" style="margin-top: 0px;">SEARCH</a> -->
+				<input type="submit" value="SEARCH" class="smoothScroll btn btn-default" style="margin-top: 0px;">
+				</form>
+				
+				<%} else {%>
 				<a href="#gallery" class="smoothScroll btn btn-default">LEARN MORE</a>
+				<%} %>
 			</div>
 		</div>
 	</div>		

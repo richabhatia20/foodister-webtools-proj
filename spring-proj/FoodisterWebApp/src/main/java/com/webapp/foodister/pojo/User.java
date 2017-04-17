@@ -14,8 +14,8 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Table(name = "USER")
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-
+//@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy=InheritanceType.JOINED)
 public class User {
 
 	@Id

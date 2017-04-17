@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.webapp.foodister.dao.UserDAO;
+import com.webapp.foodister.pojo.Customer;
+import com.webapp.foodister.pojo.Owner;
 import com.webapp.foodister.pojo.User;
 
 
@@ -28,25 +30,73 @@ public class RegistrationController {
 
 	private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
 	
-	@Autowired
-	@Qualifier("userValidator")
-	private Validator validator;
-	
+//	@Autowired
+//	@Qualifier("userValidator")
+//	private Validator validator;
+//	
 	@Autowired
 	private UserDAO userDao;
 	
-	@InitBinder
-	private void initBinder(WebDataBinder binder) {
-		binder.setValidator(validator);
-	}
+//	@InitBinder
+//	private void initBinder(WebDataBinder binder) {
+//		binder.setValidator(validator);
+//	}
 	
 	@RequestMapping(value = "/register.htm", method = RequestMethod.POST)
-	public ModelAndView registerSubmit(Model model, @ModelAttribute("user") @Validated User user,HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView registerSubmit(HttpServletRequest request, HttpServletResponse response)
 	{
 		try{
 			System.out.println("Inside register submit");
+			logger.info("printing logger");
+			String fname = request.getParameter("firstName");
+			String lname = request.getParameter("lastName");
+			String username = request.getParameter("userName");
+			String password = request.getParameter("password");
+			String email = request.getParameter("emailId");
 			
-			System.out.println("printing user name:"  + user.getUserName());
+			String option = request.getParameter("accountType");
+			System.out.println("printing user name:"  + fname + lname + username + password + email + " account type: " + option);
+			
+			boolean flag =userDao.isUniqueUser(email, username);
+			boolean successFlag;
+			if(flag)
+			{
+				
+				if(option.equalsIgnoreCase("customer"))
+				{
+					
+					
+					Customer c = new Customer(fname, lname, email, username, password);
+					successFlag = userDao.addNewUSer(c);
+					
+					if(successFlag)
+					{
+						System.out.println("Customer saved successfully");
+					}
+					
+				}
+				if(option.equalsIgnoreCase("owner"))
+				{
+					Owner o = new Owner(fname, lname, email, username, password);
+					successFlag = userDao.addNewUSer(o);
+					
+					if(successFlag)
+					{
+						System.out.println("Owner saved successfully");
+					}
+					
+				}
+				
+			}
+			else{
+				
+				
+				//return new ModelAndView("register");
+				System.out.println("duplicate details");
+				return new ModelAndView("register","registerError", "Username already exists! Please try again");
+			}
+			
+			
 			
 			
 			return new ModelAndView("login");
