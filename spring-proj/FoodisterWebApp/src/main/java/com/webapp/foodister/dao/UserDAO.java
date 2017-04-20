@@ -39,11 +39,13 @@ public class UserDAO extends DAO {
 				flag = false;
 			}
 			transaction.commit();
-			close();
+			//close();
 		} catch (HibernateException e) {
 			flag = false;
 			System.err.println(e.getMessage());
 			throw new Exception("Could not query the database");
+		}finally{
+			close();
 		}
 		return flag;
 
@@ -75,11 +77,13 @@ public class UserDAO extends DAO {
 				flag = false;
 			}
 
-			close();
+		//	close();
 		} catch (HibernateException e) {
 			flag = false;
 			System.err.println(e.getMessage());
 			throw new Exception("Could not add user");
+		}finally{
+			close();
 		}
 		return flag;
 	}
@@ -99,14 +103,16 @@ public class UserDAO extends DAO {
 			User user = (User) query.uniqueResult();
 
 			transaction.commit();
-			close();
+		//	close();
 			return user;
 		} catch (HibernateException e) {
 			
 			System.err.println(e.getMessage());
 			throw new Exception("Could not query the database");
 		}
-		
+		finally{
+			close();
+		}
 
 		
 	}

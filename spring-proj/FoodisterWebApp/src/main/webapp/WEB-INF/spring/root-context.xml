@@ -4,10 +4,21 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
-		
-  		 	<bean id="userValidator" class="com.webapp.foodister.validator.UserValidator"></bean>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- one of the properties available; the maximum file size in bytes -->
+		<property name="maxUploadSize" value="5000000" />
+	</bean>
+			
+  		<bean id="userValidator" class="com.webapp.foodister.validator.UserValidator"></bean>
 		
 		<bean id="userDao" class="com.webapp.foodister.dao.UserDAO"></bean>
+		
+		<bean id="messageDao" class="com.webapp.foodister.dao.MessageDAO"></bean>
+		<bean id="ownerDao" class="com.webapp.foodister.dao.OwnerDAO"></bean>
+		
+		<bean id="menuItem" class="com.webapp.foodister.pojo.MenuItem"></bean>
+		<bean id="menu" class="com.webapp.foodister.pojo.Menu"></bean>
+		
+		<bean id="restaurant" class="com.webapp.foodister.pojo.Restaurant"></bean>
 		
 </beans>

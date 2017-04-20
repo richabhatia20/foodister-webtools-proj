@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.webapp.foodister.dao.MessageDAO;
 import com.webapp.foodister.dao.UserDAO;
+import com.webapp.foodister.pojo.Admin;
 import com.webapp.foodister.pojo.Customer;
+import com.webapp.foodister.pojo.Messages;
 import com.webapp.foodister.pojo.Owner;
 import com.webapp.foodister.pojo.User;
 
@@ -20,6 +23,9 @@ public class LoginController {
 
 	@Autowired
 	private UserDAO userDao;
+	
+	@Autowired
+	private MessageDAO messageDao;
 	
 	@RequestMapping(value = "/login.htm", method = RequestMethod.POST)
 	public ModelAndView loginSubmit(HttpServletRequest request, HttpServletResponse response)
@@ -35,6 +41,8 @@ public class LoginController {
 				HttpSession session = request.getSession();
 				System.out.println("User found");
 				
+				session.setAttribute("User", user);
+				
 				if(user instanceof Customer)
 				{
 					
@@ -45,9 +53,19 @@ public class LoginController {
 				{
 				
 				System.out.println("is a owner");	
-				session.setAttribute("Role", "Owner");	
+				session.setAttribute("Role", "Owner");
+				return new ModelAndView("owner-home");
 				}
-				session.setAttribute("User", user);
+				
+				else if(user instanceof Admin){
+					System.out.println("is a admin");
+					session.setAttribute("Role", "Admin");
+					return new ModelAndView("admin-home");
+				}
+				
+				
+				
+				
 				
 				
 				return new ModelAndView("home");
@@ -111,5 +129,42 @@ public class LoginController {
 		}
 		
 	}
+	
+	@RequestMapping(value = "/addMessage.htm", method = RequestMethod.POST)
+	public ModelAndView messageSubmit(HttpServletRequest request, HttpServletResponse response)
+	{
+		try{
+			System.out.println("Inside message submit");
+			String name = request.getParameter("name");
+			String email = request.getParameter("email");
+			String message = request.getParameter("message");
+			
+			Messages m = new Messages(name, email, message) ;
+			
+			Boolean flag = messageDao.addNewMessage(m);
+			
+			if(flag)
+			{
+					
+				System.out.println("Message added successfully");
+				return new ModelAndView("home" ,"messageStatus", "Message sent successfully!");
+			}
+			
+			else{
+				System.out.println("Message not sent");
+				return new ModelAndView("home" ,"messageStatus", "Message not sent. Please try again later!");
+				
+			}
+			
+			
+		}catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+			return new ModelAndView("error", "errorMessage", "No page to display");
+		}
+		
+		
+	}
+	
 
 }
