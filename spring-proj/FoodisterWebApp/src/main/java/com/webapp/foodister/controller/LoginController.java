@@ -61,6 +61,8 @@ public class LoginController {
 					System.out.println("is a admin");
 					session.setAttribute("Role", "Admin");
 					return new ModelAndView("admin-home");
+					//return new ModelAndView("test");
+					
 				}
 				
 				
@@ -110,25 +112,6 @@ public class LoginController {
 		
 	}
 	
-	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public ModelAndView searchRestaurants(HttpServletRequest request, HttpServletResponse response) {
-		
-		try{
-			
-			System.out.println("Inside searchRestaurants");
-			
-			return new ModelAndView("home");
-				
-			
-			
-		}catch(Exception e)
-		{
-			
-			System.out.println(e.getMessage());
-			return new ModelAndView("error", "errorMessage", "No page to display");
-		}
-		
-	}
 	
 	@RequestMapping(value = "/addMessage.htm", method = RequestMethod.POST)
 	public ModelAndView messageSubmit(HttpServletRequest request, HttpServletResponse response)

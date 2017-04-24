@@ -10,15 +10,13 @@
 	</bean>
 			
   		<bean id="userValidator" class="com.webapp.foodister.validator.UserValidator"></bean>
-		
 		<bean id="userDao" class="com.webapp.foodister.dao.UserDAO"></bean>
-		
 		<bean id="messageDao" class="com.webapp.foodister.dao.MessageDAO"></bean>
 		<bean id="ownerDao" class="com.webapp.foodister.dao.OwnerDAO"></bean>
-		
+		<bean id="searchDao" class="com.webapp.foodister.dao.SearchDAO"></bean>
 		<bean id="menuItem" class="com.webapp.foodister.pojo.MenuItem"></bean>
 		<bean id="menu" class="com.webapp.foodister.pojo.Menu"></bean>
-		
 		<bean id="restaurant" class="com.webapp.foodister.pojo.Restaurant"></bean>
-		
+		<bean id="review" class="com.webapp.foodister.pojo.Review"></bean>
+		<bean id="reviewreply" class="com.webapp.foodister.pojo.ReviewReply"></bean>
 </beans>

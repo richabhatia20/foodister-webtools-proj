@@ -122,31 +122,26 @@
 			<ul class="nav navbar-nav side-nav">
 				<li><a href="${contextPath}/ownerhome" style="color: #fff;"><i
 						class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
-				<li class="active"><a href="#" style="color: #fff;"><i
+				<li><a href="${contextPath}/ownerprofile" style="color: #fff;"><i
 						class="fa fa-fw fa-bar-chart-o"></i> My Profile</a></li>
 
-				 <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo" style="color: #fff;"><i class="fa fa-fw fa-arrows-v"></i> Add a Restaurant  <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="${contextPath}/addmenuitem">Create Menu Item</a>
-                            </li>
-                            <li>
-                                <a href="${contextPath}/addmenu">Create Menu</a>
-                            </li>
-                            <li>
-                                <a href="${contextPath}/addrestuarant">Create Restaurant</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="${contextPath}/viewrestaurants" style="color: #fff;"><i class="fa fa-fw fa-desktop"></i> View owned Restaurants</a>
-                    </li>
-                    <li>
-                        <a href="${contextPath}/viewreviews" style="color: #fff;"><i class="fa fa-fw fa-wrench"></i>View Reviews</a>
-                    </li>
+				<li><a href="javascript:;" data-toggle="collapse"
+					data-target="#demo" style="color: #fff;"><i
+						class="fa fa-fw fa-arrows-v"></i> Add a Restaurant <i
+						class="fa fa-fw fa-caret-down"></i></a>
+					<ul id="demo" class="collapse">
+						<li><a href="${contextPath}/addmenuitem">Create Menu Item</a>
+						</li>
+						<li><a href="${contextPath}/addmenu">Create Menu</a></li>
+						<li><a href="${contextPath}/addrestuarant">Create
+								Restaurant</a></li>
+					</ul></li>
+				<li><a href="${contextPath}/viewrestaurants"
+					style="color: #fff;"><i class="fa fa-fw fa-desktop"></i> View
+						owned Restaurants</a></li>
+				<li><a href="${contextPath}/viewreviews" style="color: #fff;"><i
+						class="fa fa-fw fa-wrench"></i>View Reviews</a></li>
 			</ul>
-
 		</div>
 
 		<!-- start content -->
@@ -157,84 +152,54 @@
 				<!-- Page Heading -->
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">My Profile</h1>
+						<h1 class="page-header">Restaurants</h1>
 						<ol class="breadcrumb">
-							<li><i class="fa fa-dashboard"></i> <a href="${contextPath}/ownerhome">Dashboard</a>
-							</li>
-							<li class="active"><i class="fa fa-edit"></i> Profile</li>
+							<li><i class="fa fa-dashboard"></i> <a
+								href="${contextPath}/ownerhome">Dashboard</a></li>
+							<li class="active"><i class="fa fa-desktop"></i> All Owned
+								Restaurants</li>
 						</ol>
 					</div>
 				</div>
 				<!-- /.row -->
 
+
 				<div class="row">
-					<div class="col-lg-6">
+						<c:choose>
+							<c:when test="${ not empty requestScope.restaurants}">
+								<c:forEach items="${requestScope.restaurants}" var="restaurant">
+									<div class="col-sm-4">
 
-					<form:form commandName="profileOwner" method="post"  action="${contextPath}/updateprofile.htm">
+										<div class="panel panel-primary">
+											<div class="panel-heading">
+												<h3 class="panel-title">${restaurant.name}</h3>
+											</div>
+											<div class="panel-body">
+												Address: ${restaurant.address}, ${restaurant.city} </br> Cuisine:
+												${restaurant.cuisineType} </br>
+												Timings: ${restaurant.timings}
+											</div>
+										</div>
+									</div>
+									<!-- /.col-sm-4 -->
+								</c:forEach>
 
-							<div class="form-group">
-								<label>First Name</label> <form:input class="form-control"
-									name="firstName" path="firstName" />
-							</div>
+							</c:when>
 
-							<div class="form-group">
-								<label>Last Name</label> <form:input class="form-control"
-									name="lastName" path="lastName" />
-							</div>
+							<c:otherwise>
+								<label id="status" class="alert alert-warning"> Oh
+									Snap!You don't have any owned restuarants! </label>
 
-							<div class="form-group">
-								<label>Email</label> <form:input type="email" class="form-control"
-									name="emailId" path="emailId" readonly="true" />
-							</div>
-
-							<div class="form-group">
-								<label>User Name</label> <form:input class="form-control"
-									name="userName" path="userName" readonly="true" />
-							</div>
-
-							<div class="form-group">
-								<label>Password</label> <form:input type="password"
-									class="form-control"  path="password" name="password" />
-							</div>
-
-							<input type="submit" class="btn btn-default" value="Update Profile">
-							 <div class="form-group">
-                            
-                            <c:if test="${ not empty requestScope.addStatus}">
-
-									<c:choose>
-										<c:when test="${requestScope.addStatus.equals('Profile Updated Successfully!')}">
-        								<label id="status" class="alert alert-success"> <c:out
-											value="${requestScope.addStatus}" />
-									</label>
-        								
-    									</c:when>
-										<c:when test="${requestScope.addStatus.equals('Failed to update profile, Please try again!')}">
-        								<label id="status" class="alert alert-danger"> <c:out
-											value="${requestScope.addStatus}" />
-									</label>
-        								
-    									</c:when>
-										<c:otherwise>
-       										<label id="status" class="alert alert-warning"> <c:out
-											value="${requestScope.addStatus}" />
-									</label>
-       										
-    									</c:otherwise>
-									</c:choose>
+							</c:otherwise>
+						</c:choose>
 
 
-								</c:if>
-                            
-                            
-                            </div>
-							
-
-						</form:form>
-
-					</div>
+					
 				</div>
-				<!-- /.row -->
+				<!-- end of row -->
+
+
+
 
 			</div>
 			<!-- /.container-fluid -->

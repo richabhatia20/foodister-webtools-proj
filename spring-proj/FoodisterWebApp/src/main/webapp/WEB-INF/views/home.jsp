@@ -110,6 +110,13 @@
 					%>
 
 					<form action="${contextPath}/search" method="post">
+						<select name="location" style="color: #000; width:100px; height: 56px; padding: 10px;" class="smoothScroll">
+  						<option value="boston">Boston</option>
+  						<option value="new york">New York</option>
+  						<option value="san jose">San Jose</option>
+  						<option value="miami">Miami</option>
+						</select>
+					
 						<input type="text" name="searchRestaurant"
 							style="color: #000; margin-right: 25px; padding: 15px; width: 350px;"
 							placeholder="Search for restaurants">

@@ -4,7 +4,7 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ page session="false" %>
+
 <html>
 <head>
 	<meta charset="utf-8">
@@ -12,8 +12,6 @@
 
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="">
-	<meta name="description" content="">
 
 
 <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
@@ -33,42 +31,109 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
 </head>
 <body>
+	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!-- preloader section -->
 <section class="preloader">
 	<div class="sk-spinner sk-spinner-pulse"></div>
 </section>
 
-<!-- navigation section -->
-<section class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container">
-		<div class="navbar-header">
-			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="icon icon-bar"></span>
-				<span class="icon icon-bar"></span>
-				<span class="icon icon-bar"></span>
-			</button>
-			<a href="#" class="navbar-brand">FOODISTER</a>
-		</div>
-		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#home" class="smoothScroll">HOME</a></li>
-				<li><a href="#gallery" class="smoothScroll">RESTAURANT GALLERY</a></li>
-				<li><a href="#menu" class="smoothScroll">SPECIAL MENU</a></li>
-				<li><a href="#team" class="smoothScroll">SIGN UP</a></li>
-				<li><a href="#contact" class="smoothScroll">LOGIN</a></li>
-			</ul>
-		</div>
-	</div>
-</section>
+	<!-- navigation section -->
+	<section class="navbar navbar-default navbar-fixed-top"
+		role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="icon icon-bar"></span> <span class="icon icon-bar"></span>
+					<span class="icon icon-bar"></span>
+				</button>
+				<a href="#" class="navbar-brand">FOODISTER</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#home" class="smoothScroll">HOME</a></li>
+					<li><a href="#gallery" class="smoothScroll">RESTAURANT
+							GALLERY</a></li>
+					<li><a href="#contact" class="smoothScroll">CONTACT US</a></li>
+					<%
+						if (session.getAttribute("User") != null) {
+					%>
+
+					<li><a href="${contextPath}/logout" class="smoothScroll">LOGOUT</a></li>
+					<%
+						} else {
+					%>
 
 
+					<li><a href="${contextPath}/register" class="smoothScroll">SIGN
+							UP</a></li>
+					<li><a href="${contextPath}/login" class="smoothScroll">LOGIN</a></li>
+					<%
+						}
+					%>
+
+				</ul>
+			</div>
+		</div>
+	</section>
+
+<!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img class="first-slide" src="<c:url value="/resources/images/home-bg_edited.jpg" />" alt="First slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Example headline.</h1>
+              <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="second-slide" src="<c:url value="/resources/images/home-bg3_edited.jpg" />" alt="Second slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Another example headline.</h1>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="third-slide" src="<c:url value="/resources/images/paneer_edited.jpg" />" alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>One more for good measure.</h1>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div><!-- /.carousel -->
 
 <!-- menu section -->
 <section id="menu" class="parallax-section">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-offset-2 col-md-8 col-sm-12 text-center">
-				<h1 class="heading">Special Menu</h1>
+				<h1 class="heading">Menu</h1>
 				<hr>
 			</div>
 			<div class="col-md-6 col-sm-6">
@@ -223,6 +288,6 @@
 <script src="<c:url value="/resources/js/nivo-lightbox.min.js" />" ></script>
 <script src="<c:url value="/resources/js/wow.min.js" />" ></script>
 <script src="<c:url value="/resources/js/custom.js" />" ></script>
-
+<script src="<c:url value="/resources/js/holder.min.js" />" ></script>
 </body>
 </html>

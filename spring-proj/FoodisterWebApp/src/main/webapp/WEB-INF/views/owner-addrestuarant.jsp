@@ -126,7 +126,9 @@
                             </li>
                         </ul>
                     </li>
-                    
+                    <li>
+                        <a href="${contextPath}/viewrestaurants" style="color: #fff;"><i class="fa fa-fw fa-desktop"></i> View owned Restaurants</a>
+                    </li>
                     <li>
                         <a href="${contextPath}/viewreviews" style="color: #fff;"><i class="fa fa-fw fa-wrench"></i>View Reviews</a>
                     </li>
@@ -158,35 +160,95 @@
                 <div class="row">
                     <div class="col-lg-6">
 
-                      <form role="form" action="${contextPath}/addrestaurant.htm"
-							method="post">
-                      
+<%--                       <form role="form" action="${contextPath}/addrestaurant.htm" --%>
+<%-- 							method="post"> --%>
+                      <form:form commandName="restaurantC" method="post" action="${contextPath}/addrestaurant.htm">
 
 							<div class="form-group">
-								<label>Restaurant Name</label> <input class="form-control"
-									name="name" placeholder="Enter name">
+								<label>Restaurant Name</label> <form:input class="form-control"
+									name="name" placeholder="Enter name" path="name"/>
 							</div>
 							
 							<div class="form-group">
-								<label>Restaurant Address</label> <input class="form-control"
-									name="address" placeholder="Enter address">
+								<label>Restaurant Address</label> <form:input class="form-control"
+									name="address" placeholder="Enter address" path="address" />
 							</div>
 							
-                            
+							<div class="form-group">
+								<label>Restaurant City</label> <form:input class="form-control"
+									name="city" placeholder="Enter city" path="city" />
+							</div>
+							
+							<div class="form-group">
+								<label>Restaurant Timings</label> <form:input class="form-control"
+									name="timings" placeholder="Enter timings" path="timings" />
+							</div>
+							
+							<div class="form-group">
+								<label>Restaurant Cuisine</label> 	
+									
+									<select class="form-control" name="cuisineType" path="cuisineType">
+                                    <option value="Chinese">Chinese</option>
+                                    <option value="Italian">Italian</option>
+                                    <option value="Indian">Indian</option>
+                                    <option value="Mediterranean">Mediterranean</option>
+                                    <option value="Mexican">Mexican</option>
+                                </select>
+									
+									
+									
+							</div>
+							                            
                             <div class="form-group">
                                 <label>Select a Menu</label>
                                 <select class="form-control" name="menu">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                
+                                <c:forEach items="${requestScope.menus}" var="menu">
+                                    
+                                    <option value="${menu.description}">${menu.description}</option>
+                
+        							</c:forEach>
+                
+                                
+
                                 </select>
                             </div>
                             
                             <input type="submit" class="btn btn-default" value="Add Restaurant">
                             
-                        </form>
+                            <div class="form-group">
+                            
+                            <c:if test="${ not empty requestScope.addStatus}">
+
+									<c:choose>
+										<c:when test="${requestScope.addStatus.equals('Restaurant Added Successfully!')}">
+        								<label id="status" class="alert alert-success"> <c:out
+											value="${requestScope.addStatus}" />
+									</label>
+        								
+    									</c:when>
+										<c:when test="${requestScope.addStatus.equals('Failed to add restaurant, Please try again!')}">
+        								<label id="status" class="alert alert-danger"> <c:out
+											value="${requestScope.addStatus}" />
+									</label>
+        								
+    									</c:when>
+										<c:otherwise>
+       										<label id="status" class="alert alert-warning"> <c:out
+											value="${requestScope.addStatus}" />
+									</label>
+       										
+    									</c:otherwise>
+									</c:choose>
+
+
+								</c:if>
+                            
+                            
+                            
+                            </div>
+                            
+                        </form:form>
 
                     </div>
                 </div>

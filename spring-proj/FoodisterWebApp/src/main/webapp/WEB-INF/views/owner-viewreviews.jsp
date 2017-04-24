@@ -126,7 +126,9 @@
                             </li>
                         </ul>
                     </li>
-                    
+                    <li>
+                        <a href="${contextPath}/viewrestaurants" style="color: #fff;"><i class="fa fa-fw fa-desktop"></i> View owned Restaurants</a>
+                    </li>
                     <li>
                         <a href="${contextPath}/viewreviews" style="color: #fff;"><i class="fa fa-fw fa-wrench"></i>View Reviews</a>
                     </li>                   </ul>
@@ -145,10 +147,10 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                                <i class="fa fa-dashboard"></i>  <a href="${contextPath}/ownerhome">Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-edit"></i> Forms
+                                <i class="fa fa-table"></i> All Written Reviews
                             </li>
                         </ol>
                     </div>

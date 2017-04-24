@@ -18,7 +18,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 public class MenuItem {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name = "MENUITEM_ID")
 	private int id;
 	

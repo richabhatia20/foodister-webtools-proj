@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 //import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 //import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,7 +25,7 @@ import javax.persistence.Table;
 public class Review {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name = "REVIEW_ID")
 	private int id;
 	
@@ -33,6 +34,9 @@ public class Review {
 	
 	@Column(name = "REVIEW_COMMENT")
 	private String comment;
+	
+	@Column(name = "REVIEW_RATING")
+	private int reviewRating;
 	
 	@ManyToOne(cascade = {CascadeType.ALL})
 	private Customer postedBy;
@@ -182,4 +186,18 @@ public class Review {
     }
 
 
+
+
+	public int getReviewRating() {
+		return reviewRating;
+	}
+
+
+
+
+	public void setReviewRating(int reviewRating) {
+		this.reviewRating = reviewRating;
+	}
+
+    
 }

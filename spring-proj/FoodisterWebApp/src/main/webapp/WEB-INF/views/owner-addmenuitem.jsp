@@ -126,7 +126,9 @@
                             </li>
                         </ul>
                     </li>
-                    
+                    <li>
+                        <a href="${contextPath}/viewrestaurants" style="color: #fff;"><i class="fa fa-fw fa-desktop"></i> View owned Restaurants</a>
+                    </li>
                     <li>
                         <a href="${contextPath}/viewreviews" style="color: #fff;"><i class="fa fa-fw fa-wrench"></i>View Reviews</a>
                     </li>
@@ -189,12 +191,34 @@
 
                             <input type="submit" class="btn btn-default" value="Add Menu Item">
                             <div class="form-group">
+                            
                             <c:if test="${ not empty requestScope.addStatus}">
-                            	<label id="status"> 
-                            	
-                            	<c:out value="${requestScope.addStatus}" />
-                            	</label>
-                            </c:if>
+
+									<c:choose>
+										<c:when test="${requestScope.addStatus.equals('Item Added Successfully!')}">
+        								<label id="status" class="alert alert-success"> <c:out
+											value="${requestScope.addStatus}" />
+									</label>
+        								
+    									</c:when>
+										<c:when test="${requestScope.addStatus.equals('Failed to add item, Please try again!')}">
+        								<label id="status" class="alert alert-danger"> <c:out
+											value="${requestScope.addStatus}" />
+									</label>
+        								
+    									</c:when>
+										<c:otherwise>
+       										<label id="status" class="alert alert-warning"> <c:out
+											value="${requestScope.addStatus}" />
+									</label>
+       										
+    									</c:otherwise>
+									</c:choose>
+
+
+								</c:if>
+                            
+                            
                             </div>
                             
 						<%-- </form> --%>

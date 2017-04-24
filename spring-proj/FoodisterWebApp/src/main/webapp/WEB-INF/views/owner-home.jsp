@@ -127,7 +127,10 @@
                             </li>
                         </ul>
                     </li>
-                    
+                    <li>
+                        <a href="${contextPath}/viewrestaurants" style="color: #fff;"><i class="fa fa-fw fa-desktop"></i> View owned Restaurants</a>
+                    </li>
+                    <li>
                     <li>
                         <a href="${contextPath}/viewreviews" style="color: #fff;"><i class="fa fa-fw fa-wrench"></i>View Reviews</a>
                     </li>

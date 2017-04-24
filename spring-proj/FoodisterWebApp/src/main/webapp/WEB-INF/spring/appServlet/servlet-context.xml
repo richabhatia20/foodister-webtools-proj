@@ -20,6 +20,7 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="2"/>
 	</beans:bean>
 	
 	<context:component-scan base-package="com.webapp.foodister" />
@@ -31,6 +32,24 @@
 		<beans:bean class="com.webapp.foodister.interceptor.LoggingInterceptor" />
 	</interceptor>
 </interceptors>
+ 
+ 	<!-- view Resolver for Apache Tiles -->
+	<beans:bean id="viewResolver"
+       class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+       <beans:property name="viewClass">
+           <beans:value>
+               org.springframework.web.servlet.view.tiles2.TilesView
+           </beans:value>
+       </beans:property>
+       <beans:property name="order" value="1"/>
+   </beans:bean>
+   
+   <beans:bean id="tilesConfigurer"
+       class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+       <beans:property name="definitions"
+           value="/WEB-INF/spring/appServlet/tilesdefinition.xml">
+       </beans:property>
+   </beans:bean>
  
 	
 </beans:beans>

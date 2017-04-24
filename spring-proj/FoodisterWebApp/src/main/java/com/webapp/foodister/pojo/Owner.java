@@ -69,11 +69,14 @@ public class Owner extends User{
 	public List<Restaurant> getRestaurantList() {
 		return restaurantList;
 	}
+	public void setRestaurantList(List<Restaurant> restaurantList) {
+		this.restaurantList = restaurantList;
+	}
 	
 	public List<ReviewReply> getRepliesToReviews() {
 		return repliesToReviews;
 	}
-	public void setRepliesToReviews(ArrayList<ReviewReply> repliesToReviews) {
+	public void setRepliesToReviews(List<ReviewReply> repliesToReviews) {
 		this.repliesToReviews = repliesToReviews;
 	}
 	
@@ -96,5 +99,6 @@ public class Owner extends User{
     	repliesToReviews.remove( reviewReply );
     	reviewReply.setPostedBy( null );
     }
+
 	
 }
